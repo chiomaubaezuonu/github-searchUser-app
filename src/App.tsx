@@ -15,7 +15,13 @@ function App() {
             <img src={moon} alt='moon icon' className='w-5 h-5' />
           </div>
         </header>
-       
+        <div className='flex items-center p-2 rounded-2xl bg-white'>
+          <div>
+            <img  src={search} alt='search icon' />
+          </div>
+          <input type="text" placeholder='Search Github Username...' required />
+          <button>Search</button>
+        </div>
       </div>
     </div>
   );
