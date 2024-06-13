@@ -8,7 +8,12 @@ import './App.css';
 interface UserObject {
   name: string,
   created_at: string,
-  avatar_url: string
+  avatar_url: string,
+  login: string,
+  html_url: string,
+  public_repos: string,
+  followers: string,
+  following: string
 }
 
 function App() {
@@ -16,6 +21,7 @@ function App() {
   const [userDetails, setUserDetails] = useState<UserObject>()
   const [inputValue, setInputValue] = useState<string>('octocat')
   const [loading, setLoading] = useState<boolean>(false)
+
   useEffect(() => {
     const headers = {
       'User-Agent': 'Github-User-App'
@@ -64,15 +70,40 @@ function App() {
             <div>
               <img src={userDetails.avatar_url} className='max-h-[7.3125rem] rounded-full' alt='user' />
             </div>
-            {/* Users profile data */}
-            <div className='w-full'>
-             <div className='flex gap-8'>
-             <p>{userDetails.name}</p>
-             <p>Joined {userDetails.created_at ? new Date(userDetails.created_at).toDateString(): ""}</p>
-             </div>
-            </div>
 
-          </div>}
+            {/* Users profile data */}
+            <div>
+              <div className='gap-8 flex w-full'>
+                <div className='name flex justify-between w-full'>
+                  <div>
+                    <p className='text-[#2a3341] font-bold text-2xl'>{userDetails.name}</p>
+                    <a href={userDetails.html_url} target='_blank' rel="noopener noreferrer" className='text-[#0077ff] no-underline text-base'> @{userDetails.login}</a>
+                  </div>
+                  <div className='flex gap-[0.5rem] pt-[0.625rem] text-[#4B699B] text-base'>
+                    <p>Joined</p>
+                    <p>{userDetails.created_at ? new Date(userDetails.created_at).toDateString() : ""}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* User work info */}
+              <div className='flex justify-between my-8 mx-0 py-[1.125rem] pr-20 pl-8 rounded-2xl bg-[#f5f7ff] transition-all ease-in-out duration-500'>
+                <div className='repos'>
+                  <p>Repos</p>
+                  <p>{userDetails.public_repos}</p>
+                </div>
+                <div>
+                  <p>Followers</p>
+                  <p>{userDetails.followers}</p>
+                </div>
+                <div>
+                  <p>Following</p>
+                  <p>{userDetails.following}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );
