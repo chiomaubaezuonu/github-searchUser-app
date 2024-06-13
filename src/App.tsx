@@ -7,6 +7,7 @@ import website from "./website.svg"
 import twitter from "./twitter.svg"
 import company from "./company.svg"
 import './App.css';
+import sun from './sun.svg'
 import { error } from 'console';
 
 interface UserObject {
@@ -59,25 +60,30 @@ function App() {
     e.preventDefault()
     setInputValue(e.target.value)
   }
-
+  const handleTheme = () =>{
+    setDark(!dark)
+  }
   return (
-    <div className="App bg-[#f5f7ff] sm:w-full py-5 md:py-11 md:h-screen transition-all ease-in-out duration-500">
+    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-5 md:py-11 md:h-screen transition-all ease-in-out duration-500`}>
       <div className="flex-col gap-4 relative px-4 md:px-0 w-full md:w-1/2 mx-auto">
         <header className='flex justify-between transition-all ease-in-out duration-500'>
           <h1 className='text-[#4B699B] text-[2.2rem] font-bold'> devfinder</h1>
           <div className='flex items-center gap-4'>
-            <p onClick={handleTheme} className='text-[#4B699B] text-base cursor-pointer'>DARK</p>
-            <img onClick={handleTheme} src={moon} alt='moon icon' className='w-5 h-5 cursor-pointer' />
+            <p onClick={handleTheme} className='text-[#4B699B] text-base cursor-pointer'>{dark ? 'Light' : 'Dark'}</p>
+           {dark ?
+           <img onClick={handleTheme} src={sun} alt='sun icon' className='w-5 h-5 cursor-pointer' /> :
+           <img onClick={handleTheme} src={moon} alt='moon icon' className='w-5 h-5 cursor-pointer' /> 
+          }
           </div>
         </header>
         {!userDetails?.login &&
           <p className='absolute text-red-500 right-0 top-[2.1rem] font-bold'>User not found</p>
         }
-        <div className='search-bar-div my-4 flex items-center p-2 rounded-2xl bg-white transition-all ease-in-out duration-500'>
+        <div className={`search-bar-div my-4 flex items-center p-2 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
           <div className='my-0 mx-6'>
             <img className='w-8 h-8 object-contain' src={search} alt='search icon' />
           </div>
-          <input onChange={handleInput} value={inputValue} className='w-full outline-none' type="text" placeholder='Search Github Username...' required />
+          <input onChange={handleInput} value={inputValue} className={`w-full text-lg outline-none ${dark ? 'bg-[#1E2B48] text-white' : 'bg-white'} transition-all ease-in-out duration-500`} type="text" placeholder='Search Github Username...' required />
           {
             inputValue &&
             <p onClick={() => setInputValue("")} className='text-[#0077ff] cursor-pointer font-bold'>x</p>
@@ -87,7 +93,7 @@ function App() {
 
         {/* user details */}
         {userDetails &&
-          <div className='user-details-div flex p-4 pr-0 mr-0 md:gap-8 w-full md:p-8 rounded-2xl bg-white transition-all ease-in-out duration-500 '>
+          <div className={`user-details-div flex p-4 pr-0 mr-0 md:gap-8 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
             <div className='hidden md:block'>
               <img src={userDetails.avatar_url} className='max-h-[7.3125rem] w-[9.69rem] rounded-full' alt='user' />
             </div>
@@ -105,29 +111,29 @@ function App() {
                 </div>
                 <div className='username-container sm:block w-full md:flex justify-between'>
                   <div>
-                    <p className='text-[#2a3341] text-lg font-bold md:text-2xl'>{userDetails.name}</p>
+                    <p className={`${dark ?  'text-white' : 'text-[#2a3341]'} text-lg font-bold md:text-2xl`}>{userDetails.name}</p>
                     <a href={userDetails.html_url} target='_blank' rel="noopener noreferrer" className='text-[#0077ff] no-underline text-base'> @{userDetails.login}</a>
                   </div>
-                  <div className='flex gap-1 md:gap-[0.5rem] text-[13px] md:pt-[0.625rem]  text-[#4B699B] md:text-base'>
+                  <div className={`flex gap-1 md:gap-[0.5rem] text-[13px] md:pt-[0.625rem] ${dark ?  'text-white' : 'text-[#4B699B]'} md:text-base`}>
                     <p>Joined</p>
                     <p>{userDetails.created_at ? new Date(userDetails.created_at).toDateString() : ""}</p>
                   </div>
                 </div>
               </div>
-              <p className='mt-6 text-[#4b699b] text-base opacity-[0.75]'> {userDetails?.bio ? userDetails.bio : 'This profile has no bio'}</p>
+              <p className={`mt-6 ${ dark ? 'text-white' : 'text-[#4b699b]'} text-base opacity-[0.75]`}> {userDetails?.bio ? userDetails.bio : 'This profile has no bio'}</p>
               {/* User work info */}
 
-              <div className='flex justify-around w-full p-4 md:justify-between my-8 pl-0 md:py-[1.125rem] md:pr-20 md:pl-8 rounded-2xl bg-[#f5f7ff] transition-all ease-in-out duration-500'>
+              <div className={`flex justify-around w-full p-4 md:justify-between my-8 pl-0 md:py-[1.125rem] md:pr-20 md:pl-8 rounded-2xl ${dark ? 'bg-[#141B2E]' : 'bg-[#f5f7ff]'} transition-all ease-in-out duration-500`}>
                 <div className='repos'>
-                  <p className='text-[#4b699b] text-[0.813rem]  md:text-base'>Repos</p>
+                  <p className={`${dark ? 'text-white' : 'text-[#4b699b]'} text-[0.813rem]  md:text-base`}>Repos</p>
                   <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.public_repos}</p>
                 </div>
                 <div>
-                  <p className='text-[#4b699b]  text-[0.813rem]  md:text-base'>Followers</p>
+                  <p className={`${dark ? 'text-white' : 'text-[#4b699b]'}text-[0.813rem]  md:text-base`}>Followers</p>
                   <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.followers}</p>
                 </div>
                 <div>
-                  <p className='text-[#4b699b]  text-[0.813rem]  md:text-base'>Following</p>
+                  <p className= {`${dark ? 'text-white' : 'text-[#4b699b]'} text-[0.813rem]  md:text-base`}>Following</p>
                   <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.following}</p>
                 </div>
               </div>
