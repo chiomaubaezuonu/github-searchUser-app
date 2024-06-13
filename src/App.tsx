@@ -89,16 +89,16 @@ function App() {
               {/* User work info */}
               <div className='flex justify-between my-8 mx-0 py-[1.125rem] pr-20 pl-8 rounded-2xl bg-[#f5f7ff] transition-all ease-in-out duration-500'>
                 <div className='repos'>
-                  <p>Repos</p>
-                  <p>{userDetails.public_repos}</p>
+                  <p className='text-[#4b699b] text-base'>Repos</p>
+                  <p className='mt-[0.635rem] font-bold text-[22px] text-[#2a3341]'>{userDetails.public_repos}</p>
                 </div>
                 <div>
-                  <p>Followers</p>
-                  <p>{userDetails.followers}</p>
+                  <p className='text-[#4b699b] text-base'>Followers</p>
+                  <p className='mt-[0.635rem] font-bold text-[22px] text-[#2a3341]'>{userDetails.followers}</p>
                 </div>
                 <div>
-                  <p>Following</p>
-                  <p>{userDetails.following}</p>
+                  <p className='text-[#4b699b] text-base'>Following</p>
+                  <p className='mt-[0.635rem] font-bold text-[22px] text-[#2a3341]'>{userDetails.following}</p>
                 </div>
               </div>
             </div>
