@@ -7,6 +7,7 @@ import website from "./website.svg"
 import twitter from "./twitter.svg"
 import company from "./company.svg"
 import './App.css';
+import { error } from 'console';
 
 interface UserObject {
   name: string,
@@ -29,6 +30,7 @@ function App() {
   const [userDetails, setUserDetails] = useState<UserObject>()
   const [inputValue, setInputValue] = useState<string>('octocat')
   const [loading, setLoading] = useState<boolean>(false)
+  const [dark, setDark] = useState(false)
 
   useEffect(() => {
     const headers = {
@@ -37,30 +39,35 @@ function App() {
     // axios.get("https://api.github.com/users/chiomaubaezuonu", { headers })
     const fetchUserProfile = async () => {
       if (inputValue.trim() !== "") {
+        setLoading(true)
         await axios.get(`https://api.github.com/users/${inputValue}`, { headers })
           .then((response) => {
             setUserDetails(response.data)
           })
+          .catch(error => {
+            console.error("Fetching user profile failed:", error)
+          })
+          .finally(() => setLoading(false))
+      }else{
+        setInputValue("")
       }
     }
     fetchUserProfile()
   }, [inputValue]);
-
-  const handleInput = (e: any) => {
+ 
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setInputValue(e.target.value)
   }
-  // const handleButton = () => {
-  //   fetchUserProfile()
-  // }
+
   return (
     <div className="App bg-[#f5f7ff] sm:w-full py-5 md:py-11 md:h-screen transition-all ease-in-out duration-500">
       <div className="flex-col gap-4 relative px-4 md:px-0 w-full md:w-1/2 mx-auto">
         <header className='flex justify-between transition-all ease-in-out duration-500'>
           <h1 className='text-[#4B699B] text-[2.2rem] font-bold'> devfinder</h1>
           <div className='flex items-center gap-4'>
-            <p className='text-[#4B699B] text-base'>DARK</p>
-            <img src={moon} alt='moon icon' className='w-5 h-5' />
+            <p onClick={handleTheme} className='text-[#4B699B] text-base cursor-pointer'>DARK</p>
+            <img onClick={handleTheme} src={moon} alt='moon icon' className='w-5 h-5 cursor-pointer' />
           </div>
         </header>
         {!userDetails?.login &&
@@ -126,7 +133,7 @@ function App() {
               </div>
 
               {/* User Links */}
-              <div className='flex flex-col sm:gap-4 md:justify-between w-full'>
+              <div className='flex flex-col md:flex md:flex-row sm:gap-4 md:justify-between w-full'>
                 <div className='w-full md:w-[48%] text-[0.813rem] cursor-pointer text-[#4B699B] mb:text-base'>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all '>
                     <img src={locaction} alt='location icon' />
