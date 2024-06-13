@@ -6,6 +6,6 @@
 body{
  font-family: "Space Mono", monospace;
 }
-.search-bar-div{
-  --box-shadow: 0px 16px 30px -10px hsla(227, 46%, 50%, 0.2);
+.search-bar-div, .user-details-div{
+  box-shadow: 0px 16px 30px -10px hsla(227, 46%, 50%, 0.2);
 }
