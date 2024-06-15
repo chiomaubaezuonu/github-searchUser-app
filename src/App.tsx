@@ -29,19 +29,20 @@ interface UserObject {
 function App() {
 
   const [userDetails, setUserDetails] = useState<UserObject>()
-  const [inputValue, setInputValue] = useState<string>('octocat')
+  const [inputValue, setInputValue] = useState<string>('octopat')
   const [loading, setLoading] = useState<boolean>(false)
+  // const[defaultUser] = useState("octopat")
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    const headers = {
-      'User-Agent': 'Github-User-App'
-    }
+    // const headers = {
+    //   'User-Agent': 'Dancyangelo102'
+    // }
     // axios.get("https://api.github.com/users/chiomaubaezuonu", { headers })
     const fetchUserProfile = async () => {
       if (inputValue.trim() !== "") {
         setLoading(true)
-        await axios.get(`https://api.github.com/users/${inputValue}`, { headers })
+        await axios.get(`https://api.github.com/users/${inputValue}`)
           .then((response) => {
             setUserDetails(response.data)
           })
@@ -53,7 +54,7 @@ function App() {
         setInputValue("")
       }
     }
-    fetchUserProfile()
+    
   }, [inputValue]);
  
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +89,7 @@ function App() {
             inputValue &&
             <p onClick={() => setInputValue("")} className='text-[#0077ff] cursor-pointer font-bold'>x</p>
           }
-          <button className='p-3 ml-4 text-base text-white font-extrabold bg-[#0077ff] rounded-[0.625rem]'>Search</button>
+          <button className='p-3 ml-4 text-base text-white font-extrabold bg-[#0077ff] hover:bg-[#61abff] rounded-[0.625rem]'>Search</button>
         </div>
 
         {/* user details */}
@@ -126,21 +127,21 @@ function App() {
               <div className={`flex justify-around w-full p-4 md:justify-between my-8 pl-0 md:py-[1.125rem] md:pr-20 md:pl-8 rounded-2xl ${dark ? 'bg-[#141B2E]' : 'bg-[#f5f7ff]'} transition-all ease-in-out duration-500`}>
                 <div className='repos'>
                   <p className={`${dark ? 'text-white' : 'text-[#4b699b]'} text-[0.813rem]  md:text-base`}>Repos</p>
-                  <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.public_repos}</p>
+                  <p className={`mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] ${dark ? 'text-white' : 'text-[1.125rem]'} `}>{userDetails.public_repos}</p>
                 </div>
                 <div>
-                  <p className={`${dark ? 'text-white' : 'text-[#4b699b]'}text-[0.813rem]  md:text-base`}>Followers</p>
-                  <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.followers}</p>
+                  <p className={`${dark ? 'text-white' : 'text-[#4b699b]'} text-[0.813rem]  md:text-base`}>Followers</p>
+                  <p className={`mt-[0.635rem] font-bold ${dark ? 'text-white' : 'text-[#2a3341]'} md:text-[1.375rem] `}>{userDetails.followers}</p>
                 </div>
                 <div>
                   <p className= {`${dark ? 'text-white' : 'text-[#4b699b]'} text-[0.813rem]  md:text-base`}>Following</p>
-                  <p className='mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] text-[#2a3341]'>{userDetails.following}</p>
+                  <p className={`mt-[0.635rem] font-bold text-[1.125rem] md:text-[1.375rem] ${dark ? 'text-white' : 'text-[1.125rem]'}`}>{userDetails.following}</p>
                 </div>
               </div>
 
               {/* User Links */}
               <div className='flex flex-col md:flex md:flex-row sm:gap-4 md:justify-between w-full'>
-                <div className='w-full md:w-[48%] text-[0.813rem] cursor-pointer text-[#4B699B] mb:text-base'>
+                <div className='w-full md:w-[48%] text-[0.813rem] cursor-pointer text-[#4B699B] md:text-base'>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all '>
                     <img src={locaction} alt='location icon' />
                     <p>{userDetails.location}</p>
