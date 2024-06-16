@@ -110,7 +110,7 @@ function App() {
         {/* user details */}
         {/* {userDetails ? */}
         {loading ?
-          <p>Loading...</p>
+          <p className={` ${dark ? 'text-white' : 'text-[#4b699b]'}  text-base`}>Loading...</p>
           :
           userDetails &&
           <div className={`user-details-div flex p-4 pr-0 mr-0 md:gap-8 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
@@ -140,7 +140,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <p className={`mt-6 ${dark ? 'text-white' : 'text-[#4b699b]'} text-base opacity-[0.75]`}> {userDetails?.bio ? userDetails.bio : 'This profile has no bio'}</p>
+              <p className={`hidden md:block mt-6 ${dark ? 'text-white' : 'text-[#4b699b]'} text-base opacity-[0.75]`}> {userDetails?.bio ? userDetails.bio : 'This profile has no bio'}</p>
               {/* User work info */}
 
               <div className={`flex justify-around w-full p-4 md:justify-between my-8 pl-0 md:py-[1.125rem] md:pr-20 md:pl-8 rounded-2xl ${dark ? 'bg-[#141B2E]' : 'bg-[#f5f7ff]'} transition-all ease-in-out duration-500`}>
@@ -160,7 +160,7 @@ function App() {
 
               {/* User Links */}
               <div className='flex flex-col md:flex md:flex-row sm:gap-4 md:justify-between w-full'>
-                <div className='w-full md:w-[48%] cursor-pointer text-[#4B699B] text-base'>
+                <div className={`w-full md:w-[48%] cursor-pointer ${dark ? 'text-white' : 'text-[#4B699B]'} text-base`}>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all '>
                     <img src={locaction} alt='location icon' />
                     <p>{userDetails.location ? userDetails.location : 'Not available'}</p>
@@ -170,7 +170,7 @@ function App() {
                     <p>github.blog</p>
                   </div>
                 </div>
-                <div className='md: w-fullw-[48%] cursor-pointer text-[#4B699B] text-base'>
+                <div className={`md: w-full md:w-[48%] cursor-pointer ${dark ? 'text-white' : 'text-[#4B699B]'} text-base`}>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all'>
                     <img src={twitter} alt='twitter icon' />
                     <p>{userDetails.twitter_username ? userDetails.twitter_username : 'Not available'}</p>
