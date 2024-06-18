@@ -8,9 +8,10 @@ import twitter from "./twitter.svg"
 import company from "./company.svg"
 import './App.css';
 import sun from './sun.svg'
+import { response } from 'express';
 // import { error } from 'console';
 
-interface UserObject {
+interface User {
   name: string,
   created_at: string,
   avatar_url: string,
@@ -24,32 +25,34 @@ interface UserObject {
   company: string,
   twitter_username: string,
   bio: string,
-  // defaultUser : string
 }
-
-
 function App() {
-
-  const [userDetails, setUserDetails] = useState<UserObject | any>()
-  const [inputValue, setInputValue] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
-  const [defaultUser] = useState("octopat")
+  const [userDetails, setUserDetails] = useState<User | null>(null)
+  const [inputValue, setInputValue] = useState('')
+  const [loading, setLoading] = useState(false)
   const [dark, setDark] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
 
   // useEffect(() => {
   // const headers = {
   //   'User-Agent': 'Dancyangelo102'
   // }
   // axios.get("https://api.github.com/users/chiomaubaezuonu", { headers })
+
   useEffect(() => {
-    setUserDetails(defaultUser)
+  axios.get('https://api.github.com/users/octocat')
+  .then((response) => {
+   setUserDetails(response.data)
+  })
   }, [])
+
   const fetchUserProfile = async () => {
     if (inputValue.trim() !== "") {
       setLoading(true)
       await axios.get(`https://api.github.com/users/${inputValue}`)
         .then((response) => {
+          console.log(response.data)
           setUserDetails(response.data)
         })
         .catch(error => {
@@ -68,6 +71,7 @@ function App() {
 
   // }, [inputValue]);
 
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setInputValue(e.target.value)
@@ -76,7 +80,7 @@ function App() {
     setDark(!dark)
   }
   return (
-    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-5 md:py-9 md:h-screen transition-all ease-in-out duration-500`}>
+    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-5 md:py-9 h-screen transition-all ease-in-out duration-500`}>
       <div className="flex-col gap-4 relative px-4 md:px-0 w-full md:w-1/2 mx-auto">
         <header className='flex justify-between transition-all ease-in-out duration-500'>
           <h1 className='text-[#4B699B] text-[2.2rem] font-bold'> devfinder</h1>
@@ -89,7 +93,7 @@ function App() {
           </div>
         </header>
         {errorMsg &&
-          <p className='absolute text-red-500 right-0 top-[2.1rem] font-bold'>User not found</p> 
+          <p className='absolute text-red-500 right-0 top-[2.1rem] font-bold'>User not found</p>
         }
         <div className={`search-bar-div my-4 flex items-center p-2 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
           <div className='my-0 mx-6'>
@@ -98,11 +102,11 @@ function App() {
           <input onChange={handleInput} value={inputValue} className={`w-full text-lg outline-none ${dark ? 'bg-[#1E2B48] text-white' : 'bg-white'} transition-all ease-in-out duration-500`} type="text" placeholder='Search Github Username...' required />
           {
             inputValue &&
-            <p onClick={() =>{
+            <p onClick={() => {
               setInputValue("");
               setErrorMsg("")
             }}
-               className='text-[#0077ff] cursor-pointer font-bold'>x</p>
+              className='text-[#0077ff] cursor-pointer font-bold'>x</p>
           }
           <button onClick={() => fetchUserProfile()} className='p-3 ml-4 text-base text-white font-extrabold bg-[#0077ff] hover:bg-[#61abff] rounded-[0.625rem]'>Search</button>
         </div>
