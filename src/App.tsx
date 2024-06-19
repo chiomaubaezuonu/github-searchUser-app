@@ -118,7 +118,7 @@ function App() {
           <p className={` ${dark ? 'text-white' : 'text-[#4b699b]'}  text-base`}>Loading...</p>
           :
           userDetails &&
-          <div className={`user-details-div flex p-4 pr-0 mr-0 md:gap-2 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
+          <div className={`user-details-div flex p-6 pr-7 pr-0 mr-0 md:gap-2 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-red-500'} transition-all ease-in-out duration-500`}>
             <div className='hidden md:block'>
               <img src={userDetails.avatar_url} className='max-h-[7.3125rem] w-[9.69rem] rounded-full' alt='user' />
             </div>
