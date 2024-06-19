@@ -118,7 +118,7 @@ function App() {
           <p className={` ${dark ? 'text-white' : 'text-[#4b699b]'}  text-base`}>Loading...</p>
           :
           userDetails &&
-          <div className={`user-details-div flex p-6 pr-7 pr-0 mr-0 md:gap-2 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-red-500'} transition-all ease-in-out duration-500`}>
+          <div className={`user-details-div flex p-6 pr-6 mt-6 mr-0 md:gap-2 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
             <div className='hidden md:block'>
               <img src={userDetails.avatar_url} className='max-h-[7.3125rem] w-[9.69rem] rounded-full' alt='user' />
             </div>
@@ -134,7 +134,7 @@ function App() {
                 <div className='block md:hidden'>
                   <img src={userDetails.avatar_url} className=' w-[4.69rem] max-h-[4.3125rem] rounded-full' alt='user' />
                 </div>
-                <div className='username-container bg-green-500 sm:block w-full md:flex justify-between'>
+                <div className='username-container sm:block w-full md:flex justify-between'>
                   <div>
                     <p className={`${dark ? 'text-white' : 'text-[#2a3341]'} text-lg font-bold md:text-2xl`}>{userDetails.name}</p>
                     <a href={userDetails.html_url} target='_blank' rel="noopener noreferrer" className='text-[#0077ff] no-underline text-base'> @{userDetails.login}</a>
