@@ -81,7 +81,7 @@ function App() {
     setDark(!dark)
   }
   return (
-    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-7 md:py-9 h-screen transition-all ease-in-out duration-500`}>
+    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-12 md:py-9 h-screen transition-all ease-in-out duration-500`}>
       <div className="flex-col gap-4 relative px-4 md:px-0 w-full md:w-1/2 mx-auto">
         <header className='flex justify-between transition-all ease-in-out duration-500'>
           <h1 className='text-[#4B699B] text-[2.2rem] font-bold'> devfinder</h1>
