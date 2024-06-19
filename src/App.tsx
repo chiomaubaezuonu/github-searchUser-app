@@ -81,7 +81,7 @@ function App() {
     setDark(!dark)
   }
   return (
-    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-12 md:py-9 h-screen transition-all ease-in-out duration-500`}>
+    <div className={`App ${dark ? 'bg-[#141d2e]' : 'bg-[#f5f7ff]'} sm:w-full py-7 md:py-9 h-screen transition-all ease-in-out duration-500`}>
       <div className="flex-col gap-4 relative px-4 md:px-0 w-full md:w-1/2 mx-auto">
         <header className='flex justify-between transition-all ease-in-out duration-500'>
           <h1 className='text-[#4B699B] text-[2.2rem] font-bold'> devfinder</h1>
@@ -118,7 +118,7 @@ function App() {
           <p className={` ${dark ? 'text-white' : 'text-[#4b699b]'}  text-base`}>Loading...</p>
           :
           userDetails &&
-          <div className={`user-details-div flex p-4 pr-0 mr-0 md:gap-8 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
+          <div className={`user-details-div flex p-4 sm:py-6 pr-0 mr-0 md:gap-8 w-full md:p-8 rounded-2xl ${dark ? 'bg-[#1E2B48]' : 'bg-white'} transition-all ease-in-out duration-500`}>
             <div className='hidden md:block'>
               <img src={userDetails.avatar_url} className='max-h-[7.3125rem] w-[9.69rem] rounded-full' alt='user' />
             </div>
