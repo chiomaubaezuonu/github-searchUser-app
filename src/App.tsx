@@ -171,7 +171,7 @@ function App() {
                   </div>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all'>
                     <img src={website} alt='website icon' />
-                    <p>github.blog</p>
+                    <a href={userDetails.blog} target='__blank'>github.blog</a>
                   </div>
                 </div>
                 <div className={`md: w-full md:w-[48%] cursor-pointer ${dark ? 'text-white' : 'text-[#4B699B]'} text-base`}>
