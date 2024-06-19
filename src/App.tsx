@@ -41,7 +41,7 @@ function App() {
   // axios.get("https://api.github.com/users/chiomaubaezuonu", { headers })
 
   useEffect(() => {
-  axios.get('https://api.github.com/users/octocat')
+  axios.get('https://api.github.com/users/chiomaubaezuonu')
   .then((response) => {
    setUserDetails(response.data)
   })
