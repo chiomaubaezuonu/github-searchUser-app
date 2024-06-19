@@ -9,6 +9,7 @@ import company from "./company.svg"
 import './App.css';
 import sun from './sun.svg'
 import { response } from 'express';
+import userEvent from '@testing-library/user-event';
 // import { error } from 'console';
 
 interface User {
@@ -167,11 +168,11 @@ function App() {
                 <div className={`w-full md:w-[48%] cursor-pointer ${dark ? 'text-white' : 'text-[#4B699B]'} text-base`}>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all '>
                     <img src={locaction} alt='location icon' />
-                    <p>{userDetails.location ? userDetails.location : 'Not available'}</p>
+                    <a href={`https://www.google.com/maps/search/?q=${userDetails.location}`} target='__blank'>{userDetails.location ? userDetails.location : "Not available"}</a>
                   </div>
                   <div className='user-loc mb-4 flex items-start gap-4 break-all'>
                     <img src={website} alt='website icon' />
-                    <a href={userDetails.blog} target='__blank'>github.blog</a>
+                    <a href={userDetails.blog} target='__blank'>{userDetails.blog ? "github.blog" : "Not Available"}</a>
                   </div>
                 </div>
                 <div className={`md: w-full md:w-[48%] cursor-pointer ${dark ? 'text-white' : 'text-[#4B699B]'} text-base`}>
